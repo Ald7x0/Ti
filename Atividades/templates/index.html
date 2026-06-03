@@ -1,33 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Campeonato de Games</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <h1>Inscrição para Campeonato de Games</h1>
+{% block conteudo %}
 
-    <form action="/inscricao" method="POST">
+<h1 class="mb-4">Cadastro de Alunos</h1>
 
-        <label>Nickname:</label><br>
-        <input type="text" name="nickname"><br><br>
+<a href="/cadastrar" class="btn btn-success mb-3">
+    Novo Aluno
+</a>
 
-        <label>Jogo Escolhido:</label><br>
-        <select name="jogo">
-            <option value="">Selecione</option>
-            <option value="Valorant">Valorant</option>
-            <option value="CS2">CS2</option>
-            <option value="Free Fire">Free Fire</option>
-            <option value="League of Legends">League of Legends</option>
-        </select><br><br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Curso</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
 
-        <label>E-mail:</label><br>
-        <input type="email" name="email"><br><br>
+    <tbody>
 
-        <button type="submit">Inscrever-se</button>
+    {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.idade }}</td>
+            <td>{{ aluno.curso }}</td>
+            <td>{{ aluno.email }}</td>
 
-    </form>
+            <td>
+                <a href="/editar/{{ loop.index0 }}"
+                   class="btn btn-warning btn-sm">
+                   Editar
+                </a>
 
-</body>
-</html>
+                <a href="/excluir/{{ loop.index0 }}"
+                   class="btn btn-danger btn-sm">
+                   Excluir
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
