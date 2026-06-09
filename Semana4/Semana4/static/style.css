@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: 0.3s;
+}
+
+.container {
+    text-align: center;
+    margin-top: 60px;
+}
+
+input {
+    padding: 10px;
+    width: 220px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+/* tema claro */
+
+.claro {
+    background-color: white;
+    color: black;
+}
+
+/* tema escuro */
+
+.escuro {
+    background-color: #222;
+    color: white;
+}

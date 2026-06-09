@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Preferências do Usuário</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="{{ tema }}">
+
+    <div class="container">
+
+        <h1>Meu Site</h1>
+
+        {% if nome %}
+            <h2>Olá, {{ nome }}!</h2>
+            <p>Que bom ver você novamente.</p>
+        {% else %}
+            <h2>Olá, visitante!</h2>
+            <p>Digite seu nome para personalizar a página.</p>
+        {% endif %}
+
+        <form action="/salvar_nome" method="POST">
+
+            <input
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                required>
+
+            <button type="submit">
+                Salvar Nome
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h3>Tema da Página</h3>
+
+        <a href="/tema/claro">
+            <button>Tema Claro</button>
+        </a>
+
+        <a href="/tema/escuro">
+            <button>Tema Escuro</button>
+        </a>
+
+    </div>
+
+</body>
+</html>
