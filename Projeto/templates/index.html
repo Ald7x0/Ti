@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+
+    <style>
+        body{
+            background-color: #d063b0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .caixa{
+            width: 500px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1{
+            text-align: center;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        form{
+            display: flex;
+            gap: 10px;
+        }
+
+        input{
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus{
+            border-color: #c47bbd;
+        }
+
+        button{
+            background-color: #b52b90;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #b52b90;
+        }
+
+        ul{
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        li{
+            list-style: none;
+            background-color: #f0f0f0;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .btn-limpar{
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 15px;
+            background-color: #b52b90;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-limpar:hover{
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="caixa">
+
+        <h1>Lista de Tarefas</h1>
+
+        <form action="/adicionar" method="POST">
+            <input
+                type="text"
+                name="tarefa"
+                placeholder="Digite uma tarefa"
+                required
+            >
+
+            <button type="submit">
+                Adicionar
+            </button>
+        </form>
+
+        <ul>
+            {% for tarefa in tarefas %}
+                <li>{{ tarefa }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/limpar" class="btn-limpar">
+            Limpar Lista
+        </a>
+
+    </div>
+
+</body>
+</html>
