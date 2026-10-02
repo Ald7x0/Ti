@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block titulo %}Categorias{% endblock %}
+{% block conteudo %}
+<h1>Categorias</h1>
+<form method="post" class="formulario linha-form">
+    <input type="text" name="nome" placeholder="Nome da categoria" required>
+    <button class="btn" type="submit">Adicionar</button>
+</form>
+<div class="tabela-wrap">
+<table>
+    <thead><tr><th>ID</th><th>Nome</th></tr></thead>
+    <tbody>
+    {% for c in categorias %}
+        <tr><td>{{ c.id_categoria }}</td><td>{{ c.nome }}</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}Biblioteca{% endblock %} · Biblioteca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topo">
+        <a class="logo" href="{{ url_for('index') }}">📚 Biblioteca</a>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('acervo') }}">Acervo</a>
+            <a href="{{ url_for('novo_livro') }}">Novo livro</a>
+            <a href="{{ url_for('autores') }}">Autores</a>
+            <a href="{{ url_for('categorias') }}">Categorias</a>
+        </nav>
+    </header>
+    <main class="conteudo">
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for tipo, msg in mensagens %}
+                <div class="aviso {{ tipo }}">{{ msg }}</div>
+            {% endfor %}
+        {% endwith %}
+        {% block conteudo %}{% endblock %}
+    </main>
+    <footer class="rodape">Sistema de Biblioteca · Flask + SQLite</footer>
+</body>
+</html>

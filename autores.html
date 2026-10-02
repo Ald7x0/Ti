@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo %}Autores{% endblock %}
+{% block conteudo %}
+<h1>Autores</h1>
+<form method="post" class="formulario linha-form">
+    <input type="text" name="nome" placeholder="Nome do autor" required>
+    <input type="text" name="nacionalidade" placeholder="Nacionalidade">
+    <button class="btn" type="submit">Adicionar</button>
+</form>
+<div class="tabela-wrap">
+<table>
+    <thead><tr><th>ID</th><th>Nome</th><th>Nacionalidade</th></tr></thead>
+    <tbody>
+    {% for a in autores %}
+        <tr><td>{{ a.id_autor }}</td><td>{{ a.nome }}</td><td>{{ a.nacionalidade or '—' }}</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

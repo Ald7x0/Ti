@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titulo %}Início{% endblock %}
+{% block conteudo %}
+<section class="hero">
+    <h1>Bem-vindo à Biblioteca</h1>
+    <p>Controle o acervo: cadastre livros, autores e categorias e consulte tudo em um só lugar.</p>
+    <div class="botoes">
+        <a class="btn" href="{{ url_for('acervo') }}">Ver acervo</a>
+        <a class="btn btn-sec" href="{{ url_for('novo_livro') }}">Cadastrar livro</a>
+    </div>
+</section>
+<section class="cards">
+    <div class="card"><span>{{ total_livros }}</span>Livros</div>
+    <div class="card"><span>{{ total_autores }}</span>Autores</div>
+    <div class="card"><span>{{ total_categorias }}</span>Categorias</div>
+</section>
+{% endblock %}

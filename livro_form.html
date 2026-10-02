@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Editar livro' if livro else 'Novo livro' }}{% endblock %}
+{% block conteudo %}
+<h1>{{ 'Editar livro' if livro else 'Cadastrar livro' }}</h1>
+<form method="post" class="formulario">
+    <label>Título
+        <input type="text" name="titulo" required value="{{ livro.titulo if livro else '' }}">
+    </label>
+    <label>Autor
+        <select name="id_autor" required>
+            <option value="">Selecione...</option>
+            {% for a in autores %}
+            <option value="{{ a.id_autor }}" {{ 'selected' if livro and livro.id_autor == a.id_autor }}>{{ a.nome }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Categoria
+        <select name="id_categoria" required>
+            <option value="">Selecione...</option>
+            {% for c in categorias %}
+            <option value="{{ c.id_categoria }}" {{ 'selected' if livro and livro.id_categoria == c.id_categoria }}>{{ c.nome }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <div class="linha">
+        <label>Ano de publicação
+            <input type="number" name="ano_publicacao" min="0" max="2100" value="{{ livro.ano_publicacao if livro and livro.ano_publicacao else '' }}">
+        </label>
+        <label>Quantidade
+            <input type="number" name="quantidade" min="1" value="{{ livro.quantidade if livro else 1 }}">
+        </label>
+    </div>
+    <label>ISBN
+        <input type="text" name="isbn" value="{{ livro.isbn if livro and livro.isbn else '' }}">
+    </label>
+    <div class="botoes">
+        <button class="btn" type="submit">Salvar</button>
+        <a class="btn btn-sec" href="{{ url_for('acervo') }}">Cancelar</a>
+    </div>
+</form>
+<p class="dica">Falta o autor ou a categoria? Cadastre em <a href="{{ url_for('autores') }}">Autores</a> ou <a href="{{ url_for('categorias') }}">Categorias</a>.</p>
+{% endblock %}
