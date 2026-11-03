@@ -1,0 +1,20 @@
+PORTFÓLIO — ALEXANDRE FILIPE
+
+Como visualizar:
+1. Extraia o arquivo ZIP.
+2. Abra a pasta portfolio_alexandre.
+3. Dê dois cliques em index.html para abrir no navegador.
+
+Personalizações importantes:
+- Em index.html, revise o texto, projetos e formação.
+- Em script.js, substitua SEUEMAIL@EXEMPLO.COM, SEU-USUARIO e SEU-PERFIL pelos seus contatos reais.
+- Você pode adicionar uma foto sua substituindo o monograma A/F no bloco .hero-visual.
+
+Arquivos:
+- index.html: estrutura e conteúdo.
+- style.css: identidade visual, cores e responsividade.
+- script.js: menu mobile, ano automático e links de contato.
+
+O site usa HTML, CSS e JavaScript puros. A fonte DM Sans / Space Grotesk é carregada do Google Fonts; se estiver offline, serão usadas fontes de sistema.
+
+Foto personalizada: alexandre-filipe.png (usada na seção inicial do portfólio).
