@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo %}Início{% endblock %}
+{% block cabecalho %}Bem-vindo à PlenaVida! <span class="titulo-leve">Sua saúde, nosso cuidado.</span>{% endblock %}
+{% block conteudo %}
+<section class="boas-vindas"><div><span class="sobretitulo">CUIDADO EM CADA DETALHE</span><h2>Organização para cuidar melhor.</h2><p>As informações da clínica reunidas em um só lugar, com atenção a cada pessoa.</p></div><div class="boas-vindas-simbolo"><img src="{{ url_for('static', filename='img/logo-plenavida.svg') }}" alt="Mãos envolvendo um coração"></div></section>
+<section class="cartoes">
+    <article class="cartao numero"><span>Pacientes cadastrados</span><strong>{{ total_pacientes }}</strong><small>Pessoas no cadastro</small></article>
+    <article class="cartao numero"><span>Consultas registradas</span><strong>{{ total_consultas }}</strong><small>Agendamentos no sistema</small></article>
+</section>
+<section class="painel">
+    <div class="painel-topo"><div><h2>Próximas consultas</h2><p>Os atendimentos com data a partir de hoje.</p></div><a class="botao" href="{{ url_for('consultas') }}">Ver consultas</a></div>
+    {% if proximas %}
+    <div class="tabela-responsiva"><table><thead><tr><th>Paciente</th><th>Data</th><th>Horário</th><th>Especialidade</th><th>Status</th></tr></thead><tbody>
+    {% for consulta in proximas %}
+    <tr><td>{{ consulta.paciente }}</td><td>{{ consulta.data_consulta }}</td><td>{{ consulta.horario }}</td><td>{{ consulta.especialidade }}</td><td><span class="status">{{ consulta.status }}</span></td></tr>
+    {% endfor %}
+    </tbody></table></div>
+    {% else %}<div class="vazio"><strong>Nenhuma consulta por aqui ainda.</strong><p>Quando houver agendamentos, eles aparecerão nesta lista.</p><a href="{{ url_for('consultas') }}">Agendar uma consulta</a></div>{% endif %}
+</section>
+{% endblock %}

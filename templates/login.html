@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar | PlenaVida</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="pagina-login">
+    <main class="login-layout">
+        <section class="login-apresentacao">
+            <a class="marca marca-login" href="{{ url_for('login') }}">
+                <img class="marca-imagem" src="{{ url_for('static', filename='img/logo-plenavida.svg') }}" alt="">
+                <span>PlenaVida<small>Sua saúde, nosso cuidado.</small></span>
+            </a>
+            <div class="login-mensagem">
+                <span class="sobretitulo">BOM TER VC POR AQUI</span>
+                <h1>Cuidar bem também começa com organização.</h1>
+                <p>Entre na área da equipe para acompanhar os cadastros e deixar os atendimentos em dia.</p>
+            </div>
+            <span class="login-rodape">Sistema de gestão • Projeto acadêmico</span>
+        </section>
+
+        <section class="login-lado-form">
+            <form class="login-formulario" method="post" autocomplete="on">
+                <span class="sobretitulo">ÁREA DA EQUIPE</span>
+                <h2>Que bom te ver!</h2>
+                <p>Informe seus dados para continuar.</p>
+                {% with mensagens = get_flashed_messages() %}
+                    {% if mensagens %}
+                        <div class="mensagens" role="alert">{% for mensagem in mensagens %}<p>{{ mensagem }}</p>{% endfor %}</div>
+                    {% endif %}
+                {% endwith %}
+                <label class="campo">Matrícula / identificação
+                    <input name="matricula" required autocomplete="username" placeholder="Sua matrícula" value="{{ request.form.get('matricula', '') }}">
+                </label>
+                <label class="campo">Usuário
+                    <input name="usuario" required autocomplete="username" placeholder="Seu nome de usuário" value="{{ request.form.get('usuario', '') }}">
+                </label>
+                <label class="campo">Senha
+                    <input type="password" name="senha" required autocomplete="current-password" placeholder="Digite sua senha">
+                </label>
+                <button class="botao login-botao" type="submit">Entrar no sistema</button>
+                <small class="login-ajuda">Se vc ainda não tem acesso, peça o cadastro ao responsável pelo sistema.</small>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Consultas{% endblock %}
+{% block cabecalho %}Consultas{% endblock %}
+{% block conteudo %}
+<section class="painel">
+    <h2>Novo agendamento</h2><p>Escolha o paciente e informe os dados do atendimento.</p>
+    {% if pacientes %}
+    <form method="post" class="grade-form">
+        <label class="campo">Paciente *<select name="paciente_id" required><option value="">Selecione</option>{% for p in pacientes %}<option value="{{ p.id }}">{{ p.nome }}</option>{% endfor %}</select></label>
+        <label class="campo">Especialidade *<input name="especialidade" required placeholder="Ex.: Clínica geral"></label>
+        <label class="campo">Data *<input type="date" name="data_consulta" required></label>
+        <label class="campo">Horário *<input type="time" name="horario" required></label>
+        <label class="campo largo">Observações<textarea name="observacoes" rows="2" placeholder="Informações úteis para o atendimento"></textarea></label>
+        <div class="largo"><button class="botao">Agendar consulta</button></div>
+    </form>
+    {% else %}<div class="aviso">Antes de agendar, cadastre pelo menos um paciente na área de <a href="{{ url_for('novo_paciente') }}">pacientes</a>.</div>{% endif %}
+</section>
+<section class="painel">
+    <h2>Agenda registrada</h2>
+    {% if consultas %}<div class="tabela-responsiva"><table><thead><tr><th>Paciente</th><th>Data</th><th>Horário</th><th>Especialidade</th><th>Status</th><th>Atualizar</th></tr></thead><tbody>
+    {% for c in consultas %}<tr><td>{{ c.paciente }}</td><td>{{ c.data_consulta }}</td><td>{{ c.horario }}</td><td>{{ c.especialidade }}</td><td><span class="status">{{ c.status }}</span></td><td><form method="post" action="{{ url_for('alterar_status', consulta_id=c.id) }}" class="status-form"><select name="status"><option {% if c.status == 'Agendada' %}selected{% endif %}>Agendada</option><option {% if c.status == 'Concluída' %}selected{% endif %}>Concluída</option><option {% if c.status == 'Cancelada' %}selected{% endif %}>Cancelada</option></select><button class="link-acao">Salvar</button></form></td></tr>{% endfor %}
+    </tbody></table></div>{% else %}<div class="vazio"><strong>A agenda ainda está vazia.</strong><p>Os agendamentos feitos aparecerão aqui.</p></div>{% endif %}
+</section>
+{% endblock %}

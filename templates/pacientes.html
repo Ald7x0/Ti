@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titulo %}Pacientes{% endblock %}
+{% block cabecalho %}Pacientes{% endblock %}
+{% block conteudo %}
+<section class="painel">
+    <div class="painel-topo"><div><h2>Cadastro de pacientes</h2><p>Consulte e mantenha os dados organizados.</p></div><a class="botao" href="{{ url_for('novo_paciente') }}">+ Novo paciente</a></div>
+    <form class="filtros" method="get"><input name="q" value="{{ termo }}" placeholder="Buscar por nome ou telefone"><select name="ordem"><option value="nome" {% if ordem == 'nome' %}selected{% endif %}>Ordem alfabética</option><option value="recentes" {% if ordem == 'recentes' %}selected{% endif %}>Mais recentes primeiro</option></select><button class="botao secundario">Buscar</button></form>
+    {% if pacientes %}<div class="tabela-responsiva"><table><thead><tr><th>Nome</th><th>Telefone</th><th>E-mail</th><th>Ações</th></tr></thead><tbody>
+    {% for paciente in pacientes %}<tr><td><strong>{{ paciente.nome }}</strong></td><td>{{ paciente.telefone or '—' }}</td><td>{{ paciente.email or '—' }}</td><td class="acoes"><a href="{{ url_for('editar_paciente', paciente_id=paciente.id) }}">Editar</a><form method="post" action="{{ url_for('excluir_paciente', paciente_id=paciente.id) }}" onsubmit="return confirm('Excluir este paciente e suas consultas?')"><button class="link-perigo">Excluir</button></form></td></tr>{% endfor %}
+    </tbody></table></div>{% else %}<div class="vazio"><strong>Nenhum paciente encontrado.</strong><p>Tente outra busca ou cadastre o primeiro paciente.</p></div>{% endif %}
+</section>
+{% endblock %}

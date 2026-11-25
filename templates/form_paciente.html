@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Paciente{% endblock %}
+{% block cabecalho %}{% if paciente %}Editar paciente{% else %}Novo paciente{% endif %}{% endblock %}
+{% block conteudo %}
+<section class="painel formulario">
+    <h2>Dados do paciente</h2><p>Preencha as informações abaixo. Os campos com * são obrigatórios.</p>
+    <form method="post" class="grade-form">
+        <label class="campo largo">Nome completo *<input name="nome" required value="{{ paciente.nome if paciente else '' }}" placeholder="Ex.: Maria da Silva"></label>
+        <label class="campo">Telefone<input name="telefone" value="{{ paciente.telefone if paciente else '' }}" placeholder="(00) 00000-0000"></label>
+        <label class="campo">E-mail<input type="email" name="email" value="{{ paciente.email if paciente else '' }}" placeholder="email@exemplo.com"></label>
+        <label class="campo">Data de nascimento<input type="date" name="data_nascimento" value="{{ paciente.data_nascimento if paciente else '' }}"></label>
+        <div class="largo botoes"><button class="botao">Salvar cadastro</button><a class="botao texto" href="{{ url_for('listar_pacientes') }}">Cancelar</a></div>
+    </form>
+</section>
+{% endblock %}

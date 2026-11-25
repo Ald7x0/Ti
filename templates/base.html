@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}Início{% endblock %} | PlenaVida</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="marca" href="{{ url_for('inicio') }}">
+            <img class="marca-imagem" src="{{ url_for('static', filename='img/logo-plenavida.svg') }}" alt="">
+            <span>PlenaVida<small>Sua saúde, nosso cuidado.</small></span>
+        </a>
+        <nav aria-label="Menu principal">
+            <a href="{{ url_for('inicio') }}">Visão geral</a>
+            <a href="{{ url_for('listar_pacientes') }}">Pacientes</a>
+            <a href="{{ url_for('consultas') }}">Consultas</a>
+        </nav>
+        <div class="sidebar-final">
+            <span class="sidebar-funcionario">Acesso da equipe</span>
+            <strong>{{ funcionario_nome }}</strong>
+            <form method="post" action="{{ url_for('sair') }}"><button class="botao-sair" type="submit">Sair da conta</button></form>
+        </div>
+    </aside>
+
+    <main class="conteudo">
+        <header class="topo">
+            <div><span class="sobretitulo">PLENAVIDA • GESTÃO E ACOLHIMENTO EM SAÚDE</span><h1>{% block cabecalho %}Visão geral{% endblock %}</h1></div>
+            <span class="avatar" title="{{ funcionario_nome }}">{{ funcionario_iniciais }}</span>
+        </header>
+        {% with mensagens = get_flashed_messages() %}
+          {% if mensagens %}<div class="mensagens" role="status">{% for mensagem in mensagens %}<p>{{ mensagem }}</p>{% endfor %}</div>{% endif %}
+        {% endwith %}
+        {% block conteudo %}{% endblock %}
+        <footer>PlenaVida · Projeto acadêmico fictício</footer>
+    </main>
+</body>
+</html>
